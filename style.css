@@ -1,3 +1,28 @@
 table th::first-letter {
     text-transform:capitalize;
 }
+
+.kesz td {
+    background: #0d0;
+}
+
+.fa {
+    margin: auto 5px;
+}
+
+.fa-remove, .fa-check, .fa-trash {
+    transition: 0.2s color;
+    cursor: pointer;
+}
+
+.fa-remove:hover {
+    color: #e00;
+}
+
+.fa-check:hover {
+    color: #0d0;
+}
+
+.fa-trash:hover {
+    color: #f00;
+}
