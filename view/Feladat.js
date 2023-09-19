@@ -1,15 +1,19 @@
 
 class Feladat {
+    #id;
     #feladatAdatok;
-    #htmlKod;
     #szuloElem;
     #keys;
 
-    constructor(feladat, szuloElem, keys) {
+    constructor(id, feladat, szuloElem, keys) {
+        this.#id = id;
         this.#feladatAdatok = feladat;
         this.#szuloElem = szuloElem;
         this.#keys = keys;
+
+        this.#htmlBeagyaz();
     }
+
     #htmlKodLetrehoz() {
         let oszlopok = "";
         let element = this.#feladatAdatok;
@@ -27,33 +31,41 @@ class Feladat {
                 </td>
             </tr>`;
 
-        this.#htmlKod = txt;
+        return txt;
     }
 
-    htmlBeagyaz() {
-        this.#htmlKodLetrehoz();
-        this.#szuloElem.append(this.#htmlKod);
+    #htmlBeagyaz() {
+        const TXT = this.#htmlKodLetrehoz();
+        this.#szuloElem.append(TXT);
+
+        let szulo = this.#szuloElem.children("tr:last-child").children("td:last-child");
         
         /* console.log(this.#szuloElem.children("tr:last-child .fa-check")); */
-        this.#szuloElem.children("tr:last-child").children("td:last-child").children(".fa-check").on("click", (event) => {
-            this.setKesz(true);
-            this.#dispatch();
+        szulo.children(".fa-check").on("click", (event) => {
+            this.#dispatch("isDoneListItem");
         });
         
-        this.#szuloElem.children("tr:last-child").children("td:last-child").children(".fa-remove").on("click", (event) => {
-            this.setKesz(false);
-            this.#dispatch();
+        szulo.children(".fa-remove").on("click", (event) => {
+            this.#dispatch("isDoneListItem");
+        });
+
+        szulo.children(".fa-trash").on("click", (event) => {
+            this.#dispatch("removeListItem");
         });
     }
 
-    #dispatch() {
-        const EVENT = new CustomEvent("listaFrissit",{detail : this});
+    #dispatch(evntName) {
+        const EVENT = new CustomEvent(evntName, {detail : this.getId()});
 
         window.dispatchEvent(EVENT);
     }
 
-    setKesz(bool) {
-        this.#feladatAdatok.kesz = bool;
+    getId() {
+        return this.#id;
+    }
+
+    checkId(id) {
+        return this.#id == id;
     }
 }
 

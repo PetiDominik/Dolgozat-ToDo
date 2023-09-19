@@ -10,7 +10,7 @@ table th::first-letter {
     margin: auto 5px;
 }
 
-.fa-remove, .fa-check, .fa-trash {
+.fa-remove, .fa-check, .fa-trash, .fa-plus {
     transition: 0.2s color;
     cursor: pointer;
 }
@@ -19,7 +19,7 @@ table th::first-letter {
     color: #e00;
 }
 
-.fa-check:hover {
+.fa-check:hover, .fa-plus:hover {
     color: #0d0;
 }
 
