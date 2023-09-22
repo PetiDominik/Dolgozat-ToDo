@@ -45,7 +45,7 @@ class Urlap {
     #kattintasTrigger() {
         if (!this.#isValidDatas()) {alert("Ki kéne tölteni rendesen :/"); return;};
 
-        window.dispatchEvent(new CustomEvent("addItem", {detail : this.#adat}));
+        window.dispatchEvent(new CustomEvent("addItem", {detail : {...this.#adat}}));
     }
 
     #isValidDatas() {

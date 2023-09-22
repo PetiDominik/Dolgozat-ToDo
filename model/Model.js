@@ -4,7 +4,7 @@ class Model {
     #list;
 
     constructor() {
-        this.#list = TODOLIST2;      
+        this.#list = [...TODOLIST2];      
     }
 
     getItems() {

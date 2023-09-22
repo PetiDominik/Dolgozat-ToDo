@@ -35,9 +35,8 @@ class Controller {
 
         $(window).on("addItem", (event) => {
             const DATAS = event.detail;
-
             MODEL.addItem(DATAS);
-
+            
             new Megjelenit(MODEL.getItems(), MEGJELENIT_CONTAINER);
         })
     }
